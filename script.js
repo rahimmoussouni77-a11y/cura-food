@@ -4,35 +4,34 @@ let total = 0;
 function addToCart(name, price) {
     cart.push({ name, price });
     total += price;
-    updateUI();
+    updateCartUI();
 }
 
-function updateUI() {
-    const cartList = document.getElementById('cart-items');
-    const totalDisplay = document.getElementById('total-price');
+function removeFromCart(index) {
+    total -= cart[index].price;
+    cart.splice(index, 1); // حذف العنصر من المصفوفة
+    updateCartUI();
+}
 
+function updateCartUI() {
+    const cartItemsElement = document.getElementById('cart-items');
+    const totalPriceElement = document.getElementById('total-price');
+    
     if (cart.length === 0) {
-        cartList.innerHTML = "السلة فارغة حالياً";
+        cartItemsElement.innerHTML = "السلة فارغة حالياً";
     } else {
-        cartList.innerHTML = cart.map(item => `<div>✅ ${item.name} - ${item.price} DA</div>`).join('');
+        cartItemsElement.innerHTML = ''; 
+        cart.forEach((item, index) => {
+            const div = document.createElement('div');
+            div.style.display = "flex";
+            div.style.justifyContent = "space-between";
+            div.style.marginBottom = "10px";
+            div.innerHTML = `
+                <span>${item.name} - ${item.price} DA</span>
+                <button onclick="removeFromCart(${index})" style="background:red; color:white; border:none; border-radius:5px; cursor:pointer; padding:2px 8px;">حذف ❌</button>
+            `;
+            cartItemsElement.appendChild(div);
+        });
     }
-    totalDisplay.innerText = total;
-}
-
-function sendOrder(event) {
-    event.preventDefault();
-    if (cart.length === 0) {
-        alert("السلة فارغة!");
-        return;
-    }
-
-    const address = document.getElementById('address').value;
-    const phone = document.getElementById('phone').value;
-
-    let message = `*طلب جديد من Cura Food* 🥗%0A%0A`;
-    cart.forEach(item => message += `• ${item.name} (${item.price} DA)%0A`);
-    message += `%0A*المجموع:* ${total} DA%0A*العنوان:* ${address}%0A*الهاتف:* ${phone}`;
-
-    const myNumber = "213XXXXXXXXX"; // ضع رقمك هنا
-    window.open(`https://wa.me/${myNumber}?text=${message}`, '_blank');
+    totalPriceElement.innerText = total;
 }
