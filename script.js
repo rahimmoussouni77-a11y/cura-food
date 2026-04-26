@@ -1,146 +1,62 @@
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-let deleteIndex = null;
+let cart = [];
+let total = 0;
 
-function save(){
-    localStorage.setItem("cart",JSON.stringify(cart));
+function addToCart(name, price) {
+    cart.push({ name, price });
+    total += price;
+    renderCart();
 }
 
-function toast(msg){
-    let t=document.getElementById("toast");
-    t.innerText=msg;
-    t.style.display="block";
-    setTimeout(()=>t.style.display="none",2000);
+// ميزة الإلغاء من السلة
+function removeFromCart(index) {
+    total -= cart[index].price; // طرح السعر من الإجمالي
+    cart.splice(index, 1);      // حذف العنصر من المصفوفة
+    renderCart();               // إعادة تحديث العرض
 }
 
-/* ➕ إضافة عنصر */
-function add(name,price){
-    let item=cart.find(i=>i.name===name);
+function renderCart() {
+    const cartItems = document.getElementById("cart-items");
+    const totalPrice = document.getElementById("total-price");
 
-    if(item){
-        item.qty++;
-    }else{
-        cart.push({name,price,qty:1});
+    cartItems.innerHTML = "";
+
+    if (cart.length === 0) {
+        cartItems.innerHTML = "<li>السلة فارغة حالياً</li>";
+    } else {
+        cart.forEach((item, index) => {
+            const li = document.createElement("li");
+            li.style.display = "flex";
+            li.style.justifyContent = "space-between";
+            li.style.alignItems = "center";
+            li.style.padding = "10px";
+            li.style.borderBottom = "1px solid #ddd";
+
+            li.innerHTML = `
+                <span>${item.name} - ${item.price} DA</span>
+                <button onclick="removeFromCart(${index})" style="background:#ff4757; color:white; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">إلغاء ❌</button>
+            `;
+            cartItems.appendChild(li);
+        });
     }
-
-    save();
-    render();
-    toast("تمت الإضافة ✅");
+    totalPrice.textContent = total;
 }
 
-/* ➕ زيادة */
-function plus(i){
-    cart[i].qty++;
-    save();
-    render();
-}
+function sendOrder(event) {
+    event.preventDefault();
+    const address = document.getElementById("address").value;
+    const phone = document.getElementById("phone").value;
 
-/* ➖ نقصان */
-function minus(i){
-    if(cart[i].qty>1){
-        cart[i].qty--;
-    }else{
-        openModal(i);
-        return;
-    }
-    save();
-    render();
-}
-
-/* 🗑️ فتح نافذة حذف عنصر */
-function openModal(i){
-    deleteIndex=i;
-    document.getElementById("modal").style.display="flex";
-}
-
-/* ❌ حذف عنصر */
-function confirmDelete(){
-    cart.splice(deleteIndex,1);
-    save();
-    render();
-    closeModal();
-    toast("تم حذف العنصر 🗑️");
-}
-
-/* ❌ إغلاق النافذة */
-function closeModal(){
-    document.getElementById("modal").style.display="none";
-    deleteIndex=null;
-}
-
-/* ❌ إلغاء الطلب كامل */
-function cancelOrder(){
-    if(cart.length===0){
-        toast("السلة فارغة أصلاً ❌");
+    if (cart.length === 0) {
+        alert("السلة فارغة!");
         return;
     }
 
-    if(confirm("هل تريد إلغاء كل الطلبات؟ 🧹")){
-        cart = [];
-        save();
-        render();
-        toast("تم إلغاء الطلب بالكامل ❌");
-    }
-}
-
-/* 🛒 عرض السلة */
-function render(){
-    let box=document.getElementById("cart");
-    box.innerHTML="";
-    let total=0;
-
-    if(cart.length===0){
-        document.getElementById("empty").style.display="block";
-    }else{
-        document.getElementById("empty").style.display="none";
-    }
-
-    cart.forEach((item,i)=>{
-        total+=item.price*item.qty;
-
-        box.innerHTML+=`
-        <div class="cart-item">
-            <span>${item.name} (${item.qty})</span>
-
-            <div>
-                <button onclick="plus(${i})">+</button>
-                <button onclick="minus(${i})">-</button>
-                <button class="remove" onclick="openModal(${i})">🗑️</button>
-            </div>
-        </div>`;
+    let message = "طلب جديد من Cura Food:%0A";
+    cart.forEach(item => {
+        message += `- ${item.name} (${item.price} DA)%0A`;
     });
+    message += `%0Aالمجموع: ${total} DA%0Aالعنوان: ${address}%0Aالهاتف: ${phone}`;
 
-    document.getElementById("total").innerText=total;
+    // استبدل الرقم برقمك الخاص
+    window.open(`https://wa.me/213XXXXXXXXX?text=${message}`, "_blank");
 }
-
-/* 📦 طلب */
-function order(){
-    if(cart.length===0){
-        toast("السلة فارغة ❌");
-        return;
-    }
-
-    let msg="طلب جديد:%0A";
-    let total=0;
-
-    cart.forEach(i=>{
-        msg+=`${i.name} x${i.qty}%0A`;
-        total+=i.price*i.qty;
-    });
-
-    msg+=`%0Aالإجمالي: ${total}`;
-    msg+=`%0Aالعنوان: ${address.value}`;
-    msg+=`%0Aالهاتف: ${phone.value}`;
-
-    window.open("https://wa.me/213XXXXXXXXX?text="+msg,"_blank");
-}
-
-/* 📅 حجز */
-function reserve(){
-    toast("تم إرسال الحجز 📅");
-
-    let msg=`حجز:%0A${date.value} ${time.value}%0A${people.value} أشخاص%0A${note.value}`;
-
-    window.open("https://wa.me/213XXXXXXXXX?text="+msg,"_blank");
-}
-
-render();
