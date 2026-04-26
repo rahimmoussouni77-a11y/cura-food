@@ -4,34 +4,61 @@ let total = 0;
 function addToCart(name, price) {
     cart.push({ name, price });
     total += price;
-    updateCartUI();
+    renderCart();
 }
 
 function removeFromCart(index) {
     total -= cart[index].price;
-    cart.splice(index, 1); // حذف العنصر من المصفوفة
-    updateCartUI();
+    cart.splice(index, 1);
+    renderCart();
 }
 
-function updateCartUI() {
-    const cartItemsElement = document.getElementById('cart-items');
-    const totalPriceElement = document.getElementById('total-price');
-    
+function renderCart() {
+    const cartItems = document.getElementById("cart-items");
+    const totalPrice = document.getElementById("total-price");
+
+    cartItems.innerHTML = "";
+
     if (cart.length === 0) {
-        cartItemsElement.innerHTML = "السلة فارغة حالياً";
+        cartItems.innerHTML = "<li>السلة فارغة حالياً</li>";
     } else {
-        cartItemsElement.innerHTML = ''; 
         cart.forEach((item, index) => {
-            const div = document.createElement('div');
-            div.style.display = "flex";
-            div.style.justifyContent = "space-between";
-            div.style.marginBottom = "10px";
-            div.innerHTML = `
-                <span>${item.name} - ${item.price} DA</span>
-                <button onclick="removeFromCart(${index})" style="background:red; color:white; border:none; border-radius:5px; cursor:pointer; padding:2px 8px;">حذف ❌</button>
+            const li = document.createElement("li");
+
+            li.innerHTML = `
+                ${item.name} - ${item.price} DA
+                <button onclick="removeFromCart(${index})" style="background:red;color:white;border:none;padding:5px 10px;cursor:pointer;">
+                    حذف ❌
+                </button>
             `;
-            cartItemsElement.appendChild(div);
+
+            cartItems.appendChild(li);
         });
     }
-    totalPriceElement.innerText = total;
+
+    totalPrice.textContent = total;
+}
+
+function sendOrder(event) {
+    event.preventDefault();
+
+    const address = document.getElementById("address").value;
+    const phone = document.getElementById("phone").value;
+
+    if (cart.length === 0) {
+        alert("السلة فارغة!");
+        return;
+    }
+
+    let message = "طلب جديد:%0A";
+
+    cart.forEach(item => {
+        message += `- ${item.name} (${item.price} DA)%0A`;
+    });
+
+    message += `المجموع: ${total} DA%0A`;
+    message += `العنوان: ${address}%0A`;
+    message += `الهاتف: ${phone}`;
+
+    window.open(`https://wa.me/213XXXXXXXXX?text=${message}`, "_blank");
 }
