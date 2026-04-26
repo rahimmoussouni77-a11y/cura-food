@@ -217,3 +217,22 @@ footer{
   margin-top:30px;
   background:rgba(0,0,0,0.5);
 }
+#cart-items {
+    list-style: none; /* لإخفاء النقاط */
+    padding: 0;
+}
+
+#cart-items li {
+    background: #f9f9f9;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #eee;
+}
+
+#cart-items li button {
+    margin-right: 10px; /* ترك مسافة بين النص والزر */
+}
