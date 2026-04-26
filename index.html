@@ -3,73 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cura Food - صحتك في صحنك</title>
-
+    <title>Cura Food | تجربة طعام أسطورية</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-
 <body>
 
-<header>
-    <img src="logo.jpg" alt="Cura Food Logo" height="150" style="max-width: 100%; height: auto;"/>
-    <h1>Cura Food</h1>
-    <p>صحتك في صحنك</p>
-</header>
+    <div class="bg-shape"></div>
 
-<main>
+    <header class="main-header">
+        <div class="logo-container">
+            <img src="logo.jpg" alt="Logo" class="main-logo">
+            <h1 class="glitch" data-text="Cura Food">Cura Food</h1>
+            <div class="status-badge">مفتوح الآن 🟢</div>
+        </div>
+    </header>
 
-    <section id="menu">
-        <h2>🥗 قائمة المأكولات</h2>
+    <main class="container">
+        <section class="hero-section">
+            <h2>قائمة المأكولات الملكية 👑</h2>
+            <p>اختر وجبتك الصحية والمحضرة بعناية فائقة</p>
+        </section>
 
         <div class="menu-grid">
-
-            <div class="card">
-                <img src="salad.jpg" height="260" width="476"/>
-                <h3>سلطة مشكلة منعشة</h3>
-                <p>خضروات طازجة، فلفل ملون، ذرة، زيت الزيتون.</p>
-                <span class="price">800 DA</span>
-                <button onclick="addToCart('سلطة مشكلة', 800)">أضف للسلة 🛒</button>
+            <div class="food-card" data-aos="fade-up">
+                <div class="image-wrapper">
+                    <img src="salad.jpg" alt="Salad">
+                    <div class="overlay"><i class="fas fa-leaf"></i></div>
+                </div>
+                <div class="content">
+                    <h3>سلطة مشكلة ملكية</h3>
+                    <p>خضروات عضوية طازجة مع صوص السيزر السري.</p>
+                    <div class="footer-card">
+                        <span class="price-tag">850 DA</span>
+                        <button class="add-btn" onclick="addToCart('سلطة ملكية', 850)">
+                            إضافة <i class="fas fa-cart-plus"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
 
-            <div class="card">
-                <img src="fish.jpg" height="260" width="476"/>
-                <h3>سمك مشوي</h3>
-                <p>سمك مشوي مع خضروات طازجة.</p>
-                <span class="price">1200 DA</span>
-                <button onclick="addToCart('سمك مشوي', 1200)">أضف للسلة 🛒</button>
+            <div class="food-card" data-aos="fade-up">
+                <div class="image-wrapper">
+                    <img src="fish.jpg" alt="Fish">
+                    <div class="overlay"><i class="fas fa-fish"></i></div>
+                </div>
+                <div class="content">
+                    <h3>سمك السلمون المشوي</h3>
+                    <p>سلمون طازج مشوي على نار هادئة مع أعشاب البحر.</p>
+                    <div class="footer-card">
+                        <span class="price-tag">1400 DA</span>
+                        <button class="add-btn" onclick="addToCart('سلمون مشوي', 1400)">
+                            إضافة <i class="fas fa-cart-plus"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
 
-            <div class="card">
-                <img src="tajine.jpg" height="260" width="476"/>
-                <h3>طاجين زيتون</h3>
-                <p>طاجين بالدجاج والزيتون.</p>
-                <span class="price">1500 DA</span>
-                <button onclick="addToCart('طاجين زيتون', 1500)">أضف للسلة 🛒</button>
+            <div class="food-card" data-aos="fade-up">
+                <div class="image-wrapper">
+                    <img src="tajine.jpg" alt="Tajine">
+                    <div class="overlay"><i class="fas fa-utensils"></i></div>
+                </div>
+                <div class="content">
+                    <h3>طاجين زيتون برستيج</h3>
+                    <p>دجاج مكرمل مع زيتون سيق الفاخر ولمسة عسل.</p>
+                    <div class="footer-card">
+                        <span class="price-tag">1600 DA</span>
+                        <button class="add-btn" onclick="addToCart('طاجين برستيج', 1600)">
+                            إضافة <i class="fas fa-cart-plus"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
-
         </div>
-    </section>
 
-    <section id="order">
-        <h2>🛒 سلة المشتريات</h2>
+        <section class="cart-section" id="order">
+            <div class="cart-header">
+                <h3><i class="fas fa-shopping-basket"></i> حقيبة الطلبات</h3>
+                <span id="items-count" class="badge">0</span>
+            </div>
+            <ul id="cart-items" class="luxury-list"></ul>
+            
+            <div class="total-box">
+                <span>المجموع الإجمالي</span>
+                <span class="total-amount"><span id="total-price">0</span> DA</span>
+            </div>
 
-        <ul id="cart-items">السلة فارغة حالياً</ul>
+            <form class="order-form" onsubmit="sendOrder(event)">
+                <div class="input-container">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <input type="text" id="address" placeholder="أين نسلمك وجبتك؟" required>
+                </div>
+                <div class="input-container">
+                    <i class="fas fa-phone"></i>
+                    <input type="tel" id="phone" placeholder="رقم هاتفك للتواصل" required>
+                </div>
+                <button type="submit" class="submit-btn">
+                    تأكيد الطلب عبر WhatsApp <i class="fab fa-whatsapp"></i>
+                </button>
+            </form>
+        </section>
+    </main>
 
-        <p><strong>المجموع:</strong> <span id="total-price">0</span> DA</p>
+    <div id="notification-area"></div>
 
-        <h3>التوصيل</h3>
-
-        <form onsubmit="sendOrder(event)">
-            <input type="text" id="address" placeholder="العنوان" required>
-            <input type="tel" id="phone" placeholder="الهاتف" required>
-            <button type="submit">إرسال عبر واتساب</button>
-        </form>
-    </section>
-
-</main>
-
-<script src="script.js"></script>
-
+    <script src="script.js"></script>
 </body>
 </html>
