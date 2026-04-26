@@ -3,72 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cura Food | تجربة فاخرة</title>
+<title>Cura Food</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;900&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
 <header>
-    <h1>Cura Food</h1>
-    <p>تجربة مطعم فاخرة بين يديك</p>
+    <h1>🍽️ Cura Food</h1>
+    <p>مطعمك الذكي</p>
 </header>
 
 <div class="container">
 
-    <h2 class="title">🍽️ القائمة</h2>
+<h2>القائمة</h2>
 
-    <div class="menu">
+<div class="menu">
 
-        <div class="card">
-            <img src="salad.jpg">
-            <h3>سلطة صحية</h3>
-            <p>800 DA</p>
-            <button onclick="add('سلطة صحية',800)">إضافة</button>
-        </div>
+<div class="card">
+<h3>سلطة</h3>
+<p>800 DA</p>
+<button onclick="add('سلطة',800)">إضافة</button>
+</div>
 
-        <div class="card">
-            <img src="fish.jpg">
-            <h3>سمك مشوي</h3>
-            <p>1200 DA</p>
-            <button onclick="add('سمك مشوي',1200)">إضافة</button>
-        </div>
+<div class="card">
+<h3>سمك</h3>
+<p>1200 DA</p>
+<button onclick="add('سمك',1200)">إضافة</button>
+</div>
 
-        <div class="card">
-            <img src="tajine.jpg">
-            <h3>طاجين</h3>
-            <p>1500 DA</p>
-            <button onclick="add('طاجين',1500)">إضافة</button>
-        </div>
+<div class="card">
+<h3>طاجين</h3>
+<p>1500 DA</p>
+<button onclick="add('طاجين',1500)">إضافة</button>
+</div>
 
-    </div>
+</div>
 
-    <!-- CART -->
-    <div class="cart">
-        <h2>🛒 السلة</h2>
-        <div id="cart"></div>
+<!-- CART -->
+<div class="cart">
+<h2>🛒 السلة</h2>
+<div id="cart"></div>
 
-        <p>الإجمالي: <span id="total">0</span> DA</p>
+<h3>الإجمالي: <span id="total">0</span> DA</h3>
 
-        <input id="address" placeholder="العنوان">
-        <input id="phone" placeholder="رقم الهاتف">
+<input id="address" placeholder="العنوان">
+<input id="phone" placeholder="رقم الهاتف">
 
-        <button onclick="order()">طلب عبر واتساب</button>
-    </div>
+<button onclick="order()">طلب عبر واتساب</button>
+</div>
 
-    <!-- RESERVATION -->
-    <div class="reservation">
-        <h2>📅 حجز طاولة</h2>
+<!-- RESERVATION -->
+<div class="cart">
+<h2>📅 حجز طاولة</h2>
 
-        <input type="date" id="date">
-        <input type="time" id="time">
-        <input type="number" id="people" placeholder="عدد الأشخاص">
-        <textarea id="note" placeholder="ملاحظات"></textarea>
+<input type="date" id="date">
+<input type="time" id="time">
+<input type="number" id="people" placeholder="عدد الأشخاص">
+<textarea id="note" placeholder="ملاحظات"></textarea>
 
-        <button onclick="reserve()">تأكيد الحجز</button>
-    </div>
+<button onclick="reserve()">حجز</button>
+</div>
 
 </div>
 
