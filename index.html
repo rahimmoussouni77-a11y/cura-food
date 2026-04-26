@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cura Food - صحتك في صحنك</title>
+
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 </head>
+
 <body>
+
 <header>
     <img src="logo.jpg" alt="Cura Food Logo" height="150" style="max-width: 100%; height: auto;"/>
     <h1>Cura Food</h1>
@@ -15,93 +18,56 @@
 </header>
 
 <main>
+
     <section id="menu">
         <h2>🥗 قائمة المأكولات</h2>
+
         <div class="menu-grid">
+
             <div class="card">
-                <img src="salad.jpg" alt="سلطة مشكلة" height="260" width="476"/>
+                <img src="salad.jpg" height="260" width="476"/>
                 <h3>سلطة مشكلة منعشة</h3>
-                <p>خضروات طازجة، فلفل ملون، ذرة، مع زيت الزيتون والخل.</p>
+                <p>خضروات طازجة، فلفل ملون، ذرة، زيت الزيتون.</p>
                 <span class="price">800 DA</span>
                 <button onclick="addToCart('سلطة مشكلة', 800)">أضف للسلة 🛒</button>
             </div>
 
             <div class="card">
-                <img src="fish.jpg" alt="سمك مشوي" height="260" width="476"/>
-                <h3>سمك مشوي على الفحم</h3>
-                <p>متبل بالأعشاب، يقدم مع بطاطا وخضروات وخبز خالي من الغلوتين.</p>
+                <img src="fish.jpg" height="260" width="476"/>
+                <h3>سمك مشوي</h3>
+                <p>سمك مشوي مع خضروات طازجة.</p>
                 <span class="price">1200 DA</span>
-                <button onclick="addToCart('سمك مشوي على الفحم', 1200)">أضف للسلة 🛒</button>
+                <button onclick="addToCart('سمك مشوي', 1200)">أضف للسلة 🛒</button>
             </div>
 
             <div class="card">
-                <img src="tajine.jpg" alt="طاجين زيتون" height="260" width="476"/>
-                <h3>طاجين زيتون بالدجاج المقرمش</h3>
-                <p>دجاج محمر، صلصة زيتون مطحونة، جزر مكرمل وشومبينيو محشي.</p>
+                <img src="tajine.jpg" height="260" width="476"/>
+                <h3>طاجين زيتون</h3>
+                <p>طاجين بالدجاج والزيتون.</p>
                 <span class="price">1500 DA</span>
-                <button onclick="addToCart('طاجين زيتون مقرمش', 1500)">أضف للسلة 🛒</button>
+                <button onclick="addToCart('طاجين زيتون', 1500)">أضف للسلة 🛒</button>
             </div>
+
         </div>
     </section>
 
     <section id="order">
         <h2>🛒 سلة المشتريات</h2>
-        <div id="cart-items">السلة فارغة حالياً</div>
-        
-        <div class="total-container">
-            <strong>المجموع الإجمالي: </strong>
-            <span id="total-price">0</span> DA
-        </div>
 
-        <hr>
-        <h3>تفاصيل التوصيل</h3>
-        <form id="order-form" onsubmit="sendOrder(event)">
-            <input type="text" id="address" placeholder="عنوان المنزل (مثلاً: حي 5 جويلية)" required>
-            <input type="tel" id="phone" placeholder="رقم الهاتف" required>
-            <button type="submit" class="btn-order">إرسال الطلب عبر واتساب ✅</button>
+        <ul id="cart-items">السلة فارغة حالياً</ul>
+
+        <p><strong>المجموع:</strong> <span id="total-price">0</span> DA</p>
+
+        <h3>التوصيل</h3>
+
+        <form onsubmit="sendOrder(event)">
+            <input type="text" id="address" placeholder="العنوان" required>
+            <input type="tel" id="phone" placeholder="الهاتف" required>
+            <button type="submit">إرسال عبر واتساب</button>
         </form>
     </section>
 
-    <section id="reservation">
-        <div class="reservation-box">
-            <h2>📅 احجز طاولتك الآن</h2>
-            <p class="subtitle">اختار الوقت والمكان وخلي الباقي علينا ✨</p>
-
-            <form onsubmit="alert('تم إرسال طلب الحجز بنجاح ✅'); return false;">
-                <div class="input-group">
-                    <label>📅 التاريخ</label>
-                    <input type="date" required>
-                </div>
-
-                <div class="input-group">
-                    <label>⏰ الوقت</label>
-                    <input type="time" required>
-                </div>
-
-                <div class="input-group">
-                    <label>👥 عدد الأشخاص</label>
-                    <input type="number" placeholder="مثلاً: 4" min="1" required>
-                </div>
-
-                <div class="input-group">
-                    <label>📞 رقم الهاتف</label>
-                    <input type="tel" placeholder="05xxxxxxxx" required>
-                </div>
-
-                <div class="input-group">
-                    <label>📝 ملاحظات (اختياري)</label>
-                    <textarea placeholder="مثلاً: طاولة قرب النافذة..."></textarea>
-                </div>
-
-                <button type="submit" class="btn-reserve">تأكيد الحجز 🚀</button>
-            </form>
-        </div>
-    </section>
 </main>
-
-<footer>
-    <p>&copy; 2026 Cura Food - جميع الحقوق محفوظة</p>
-</footer>
 
 <script src="script.js"></script>
 
