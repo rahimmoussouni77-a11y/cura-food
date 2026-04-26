@@ -1,177 +1,175 @@
-/* إعدادات الخطوط والألوان الأساسية */
-:root {
-    --primary-color: #27ae60;    /* أخضر مريح للعين */
-    --accent-color: #d4af37;     /* ذهبي خفيف للفخامة */
-    --bg-color: #f8fbf9;         /* خلفية هادئة */
-    --text-dark: #2c3e50;
-    --white: #ffffff;
-    --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+/* ====== RESET ====== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Cairo', sans-serif;
 }
 
 body {
-    font-family: 'Cairo', sans-serif;
-    background-color: var(--bg-color);
-    margin: 0;
-    padding: 0;
-    color: var(--text-dark);
-    direction: rtl;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: #fff;
+    line-height: 1.6;
 }
 
-/* الهيدر - تنسيق عصري */
+/* ====== HEADER ====== */
 header {
-    background: var(--white);
-    padding: 40px 20px;
     text-align: center;
-    box-shadow: var(--shadow);
-    border-bottom: 3px solid var(--primary-color);
+    padding: 30px 20px;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 header img {
     border-radius: 50%;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    margin-bottom: 10px;
+    transition: 0.5s;
 }
 
 header img:hover {
-    transform: scale(1.05);
+    transform: rotate(5deg) scale(1.05);
 }
 
 header h1 {
-    margin: 15px 0 5px;
-    font-size: 2.5rem;
-    color: var(--primary-color);
+    font-size: 40px;
+    color: #facc15;
 }
 
-/* شبكة المأكولات - عرض احترافي */
+header p {
+    color: #cbd5e1;
+}
+
+/* ====== MAIN LAYOUT ====== */
+main {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 30px 0;
+}
+
+section {
+    margin-bottom: 50px;
+    padding: 20px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
+}
+
+/* ====== TITLES ====== */
+h2 {
+    margin-bottom: 20px;
+    color: #38bdf8;
+    font-size: 28px;
+}
+
+/* ====== MENU GRID ====== */
 .menu-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-    padding: 40px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
 }
 
+/* ====== CARD ====== */
 .card {
-    background: var(--white);
+    background: rgba(255,255,255,0.08);
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: var(--shadow);
-    transition: all 0.3s ease;
-    border: 1px solid rgba(0,0,0,0.02);
+    text-align: center;
+    padding-bottom: 15px;
+    transition: 0.4s;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 
 .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
 }
 
 .card img {
     width: 100%;
-    height: 200px;
+    height: 180px;
     object-fit: cover;
 }
 
 .card h3 {
-    margin: 15px 0;
-    font-size: 1.3rem;
+    margin: 10px 0;
+    color: #f1f5f9;
 }
 
 .price {
     display: block;
-    font-size: 1.5rem;
-    color: var(--primary-color);
-    font-weight: 700;
-    margin-bottom: 15px;
+    color: #22c55e;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
-/* الأزرار */
+/* ====== BUTTONS ====== */
 button {
-    font-family: 'Cairo', sans-serif;
-    transition: all 0.3s ease;
-}
-
-.card button {
-    background: var(--primary-color);
-    color: var(--white);
+    padding: 10px 15px;
     border: none;
-    padding: 12px 25px;
-    border-radius: 50px;
-    font-weight: 600;
+    border-radius: 12px;
     cursor: pointer;
-    margin-bottom: 20px;
+    background: linear-gradient(45deg, #f59e0b, #f97316);
+    color: white;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
-.card button:hover {
-    background: #219150;
-    letter-spacing: 1px;
+button:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
 }
 
-/* الأقسام (السلة والحجز) */
-section {
-    background: var(--white);
-    max-width: 700px;
-    margin: 40px auto;
-    padding: 30px;
-    border-radius: 25px;
-    box-shadow: var(--shadow);
-}
-
-section h2 {
-    color: var(--primary-color);
-    border-bottom: 2px solid #eee;
-    padding-bottom: 15px;
-    margin-bottom: 25px;
-}
-
-/* السلة وعناصرها */
+/* ====== CART ====== */
 #cart-items {
-    padding: 0;
+    list-style: none;
+    margin: 10px 0;
+    padding: 10px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
 }
 
 #cart-items li {
-    background: #fdfdfd;
-    margin-bottom: 10px;
-    padding: 15px;
-    border-radius: 12px;
-    border: 1px solid #f0f0f0;
+    padding: 5px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* ====== FORMS ====== */
+form {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
 }
 
-/* المدخلات (Inputs) */
 input {
-    width: 100%;
-    padding: 14px;
-    margin: 10px 0;
-    border: 1px solid #eee;
-    border-radius: 12px;
-    background: #fafafa;
-    box-sizing: border-box;
-    font-family: 'Cairo';
-}
-
-input:focus {
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
     outline: none;
-    border-color: var(--primary-color);
-    background: #fff;
+    background: rgba(255,255,255,0.1);
+    color: white;
 }
 
-/* تذييل الصفحة */
-footer {
-    padding: 30px;
-    color: #999;
-    font-size: 0.9rem;
+input::placeholder {
+    color: #cbd5e1;
 }
 
-/* تحسينات للهاتف */
-@media (max-width: 600px) {
-    section {
-        margin: 20px;
-        padding: 20px;
-    }
+/* ====== SPECIAL BUTTON COLORS ====== */
+form button {
+    background: linear-gradient(45deg, #22c55e, #16a34a);
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
     header h1 {
-        font-size: 1.8rem;
+        font-size: 28px;
+    }
+
+    .card img {
+        height: 150px;
     }
 }
