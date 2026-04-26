@@ -1,107 +1,86 @@
-:root {
-    --gold: #d4af37;
-    --dark-green: #1a3c34;
-    --deep-black: #121212;
-    --accent: #2ecc71;
-    --white: #ffffff;
-    --glass: rgba(255, 255, 255, 0.05);
+body{
+    margin:0;
+    font-family:'Cairo',sans-serif;
+    background:#0f172a;
+    color:#fff;
 }
 
-body {
-    font-family: 'Cairo', sans-serif;
-    background-color: var(--deep-black);
-    color: var(--white);
-    margin: 0;
-    overflow-x: hidden;
+header{
+    text-align:center;
+    padding:30px;
+    background:#111827;
 }
 
-/* خلفية متحركة */
-.bg-shape {
-    position: fixed;
-    top: -100px;
-    left: -100px;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, var(--dark-green) 0%, transparent 70%);
-    z-index: -1;
-    filter: blur(50px);
+header h1{
+    color:#facc15;
+    font-size:40px;
 }
 
-header {
-    padding: 40px 20px;
-    text-align: center;
-    background: linear-gradient(to bottom, #1a1a1a, transparent);
+.container{
+    width:90%;
+    margin:auto;
 }
 
-.main-logo {
-    width: 120px;
-    border-radius: 50%;
-    border: 3px solid var(--gold);
-    box-shadow: 0 0 20px var(--gold);
-    transition: 0.5s;
+.title{
+    margin:20px 0;
+    color:#38bdf8;
 }
 
-.main-logo:hover { transform: rotate(360deg); }
-
-h1 { font-size: 3rem; margin: 15px 0; color: var(--gold); text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
-
-/* البطاقات الأسطورية */
-.menu-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    padding: 20px;
+.menu{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:15px;
 }
 
-.food-card {
-    background: #1e1e1e;
-    border-radius: 25px;
-    overflow: hidden;
-    border: 1px solid var(--glass);
-    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+.card{
+    background:#1e293b;
+    padding:15px;
+    border-radius:15px;
+    text-align:center;
 }
 
-.food-card:hover { transform: scale(1.05); border-color: var(--gold); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-
-.image-wrapper { position: relative; height: 230px; }
-.image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
-.overlay {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.4); display: flex; justify-content: center;
-    align-items: center; opacity: 0; transition: 0.3s; font-size: 3rem; color: var(--gold);
-}
-.food-card:hover .overlay { opacity: 1; }
-
-.content { padding: 25px; }
-.price-tag { font-size: 1.5rem; color: var(--accent); font-weight: 900; }
-
-.add-btn {
-    background: var(--gold); color: black; border: none; padding: 12px 25px;
-    border-radius: 15px; cursor: pointer; font-weight: 900; transition: 0.3s;
-}
-.add-btn:hover { background: var(--white); box-shadow: 0 0 15px var(--gold); }
-
-/* السلة الاحترافية */
-.cart-section {
-    max-width: 700px; margin: 60px auto; background: #1a1a1a;
-    padding: 35px; border-radius: 30px; border: 2px solid var(--gold);
+.card img{
+    width:100%;
+    height:140px;
+    object-fit:cover;
+    border-radius:10px;
 }
 
-.luxury-list li {
-    background: var(--glass); margin-bottom: 12px; padding: 15px 20px;
-    border-radius: 15px; display: flex; justify-content: space-between;
-    align-items: center; animation: slideIn 0.4s ease-out;
+button{
+    background:#22c55e;
+    border:none;
+    padding:10px;
+    margin-top:10px;
+    color:#fff;
+    border-radius:8px;
+    cursor:pointer;
 }
 
-.total-box {
-    display: flex; justify-content: space-between; padding: 25px 0;
-    border-top: 2px dashed var(--glass); font-size: 1.8rem; font-weight: 900;
+button:hover{
+    background:#16a34a;
 }
 
-.submit-btn {
-    width: 100%; padding: 20px; border-radius: 20px; background: #25D366;
-    color: white; border: none; font-size: 1.3rem; font-weight: 900;
-    cursor: pointer; box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+.cart, .reservation{
+    margin-top:30px;
+    background:#1e293b;
+    padding:15px;
+    border-radius:15px;
 }
 
-@keyframes slideIn { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+input,textarea{
+    width:100%;
+    margin:8px 0;
+    padding:10px;
+    border:none;
+    border-radius:8px;
+}
+
+.cart-item{
+    display:flex;
+    justify-content:space-between;
+    margin:8px 0;
+}
+
+.total{
+    color:#facc15;
+}
